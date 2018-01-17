@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf lib",
     "test": "mocha",
-    "prepublish": "npm run clean && tsc"
+    "build": "tsc",
+    "prepublish": "npm run clean && npm run build"
   },
   "bin": {
     "pbr-upload": "./bin/pbr-upload",
