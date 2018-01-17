@@ -57,3 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
+# Node Export Files
+/lib
+/config/upload.ini

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "types": [
+      "node",
+      "mocha",
+      "should"
+    ],
+    "importHelpers": true,
+    "pretty": true,
+    "sourceMap": true,
+    "newLine": "LF",
+    "outDir": "lib"
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
