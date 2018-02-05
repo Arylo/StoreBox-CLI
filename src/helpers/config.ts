@@ -74,7 +74,7 @@ export const set = (type=ConfigType.USER, key: keyof IConfig, value: string) => 
 
     const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
     config[key] = value;
-    if (value.trim() === "") {
+    if (!value || value.trim() === "") {
         delete config[key];
     }
     fs.writeFileSync(configPath, iniHeader + ini.stringify(config));

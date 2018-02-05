@@ -55,6 +55,14 @@ export const handler = () => {
                     return data;
                 }
                 const json = JSON.parse(data);
+                if (!(json.token && json.username)) {
+                    if (json.message) {
+                        progress.fail(json.message);
+                    } else {
+                        progress.fail("Login Fail");
+                    }
+                    return;
+                }
                 const mode = argv.g ? ConfigType.GLOBAL: ConfigType.USER;
                 config.set(mode, "username", answers.username);
                 config.set(mode, "token", json.token);

@@ -32,15 +32,10 @@ if (argv._.length === 0) {
     if (!path.isAbsolute(filepath)) {
         filepath = `${cwd}/${filepath}`;
     }
-    if (fs.statSync(filepath).isDirectory()) {
+    if (fs.existsSync(filepath) && fs.statSync(filepath).isDirectory()) {
         updateFolder.handler(filepath);
     } else {
-        updateFiles.handler(argv._.map((item) => {
-            if (!path.isAbsolute(item)) {
-                return `${cwd}/${item}`;
-            }
-            return item;
-        }));
+        updateFiles.handler(argv._);
     }
 
 }

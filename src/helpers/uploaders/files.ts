@@ -3,14 +3,18 @@ import { isAbsolute } from 'path';
 import { get } from '../config';
 import request = require('request');
 import ora = require("ora");
+import glob = require("glob");
+import flatten = require('lodash.flatten');
 
 export const handler = (filepaths: string[]) => {
-    const filePaths = [...filepaths].map((filepath) => {
+    const filePaths = flatten([...filepaths].map((filepath) => {
         if (!isAbsolute(filepath)) {
             filepath = `${process.cwd()}/${filepath}`;
         }
         return filepath;
-    }).filter((filepath) => {
+    }).map((filepath) => {
+        return glob.sync(filepath);
+    })).filter((filepath) => {
         return fs.existsSync(filepath) && fs.statSync(filepath).isFile();
     });
 
@@ -27,17 +31,31 @@ export const handler = (filepaths: string[]) => {
         request.post({
             url: config.file_upload_url,
             formData: { file: steam },
-            timeout: 1500
+            timeout: 5000
         })
             .auth(config.username, config.token)
             .on("data", (d) => {
                 data += d.toString();
             })
-            .on("error", () => {
+            .on("error", (error) => {
+                if (error) {
+                    console.log(error);
+                }
                 progress.fail(`Upload Fail ${filepath}`);
+                upload(index + 1);
             })
             .on("end", () => {
-                progress.succeed(`Upload Success ${filepath}`);
+                let obj;
+                try {
+                    obj = JSON.parse(data);
+                } catch (error) {
+
+                }
+                if (obj && obj.message) {
+                    progress.fail(obj.message);
+                } else {
+                    progress.succeed(`Upload Success ${filepath}`);
+                }
                 upload(index + 1);
             });
     };
