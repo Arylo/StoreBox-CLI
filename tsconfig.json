@@ -3,9 +3,7 @@
     "target": "es6",
     "module": "commonjs",
     "types": [
-      "node",
-      "mocha",
-      "should"
+      "node"
     ],
     "importHelpers": true,
     "pretty": true,
