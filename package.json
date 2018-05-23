@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Arylo/StoreBox-CLI.git"
+    "url": "git+https://github.com/BoxSystem/StoreBox-CLI.git"
   },
   "files": [
     "lib",
@@ -27,9 +27,12 @@
   "author": "AryloYeung <arylo.open@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Arylo/StoreBox-CLI/issues"
+    "url": "https://github.com/BoxSystem/StoreBox-CLI/issues"
   },
-  "homepage": "https://github.com/Arylo/StoreBox-CLI#readme",
+  "homepage": "https://github.com/BoxSystem/StoreBox-CLI#readme",
+  "engines": {
+    "node": ">=6"
+  },
   "dependencies": {
     "cli-table": "^0.3.1",
     "glob": "^7.1.2",
@@ -48,7 +51,7 @@
     "@types/inquirer": "0.0.41",
     "@types/minimist": "^1.2.0",
     "@types/mkdirp": "^0.5.2",
-    "@types/node": "^10.0.6",
+    "@types/node": "^10.1.2",
     "@types/ora": "^1.3.4",
     "@types/rimraf": "^2.0.2",
     "rimraf": "^2.6.2",

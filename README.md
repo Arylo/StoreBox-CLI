@@ -3,11 +3,10 @@
 StoreBox API for CLI
 
 [![node](https://img.shields.io/node/v/storebox-cli.svg?style=flat-square)](https://www.npmjs.com/package/storebox-cli)
-[![David](https://img.shields.io/david/Arylo/storebox-cli.svg?style=flat-square)][REPO]
-[![Travis](https://img.shields.io/travis/Arylo/StoreBox-CLI.svg?style=flat-square)](https://travis-ci.org/Arylo/StoreBox-CLI)
-[![Coveralls](https://img.shields.io/coveralls/github/Arylo/StoreBox-CLI.svg?style=flat-square)](https://coveralls.io/github/Arylo/StoreBox-CLI)
+[![David](https://img.shields.io/david/BoxSystem/storebox-cli.svg?style=flat-square)][REPO]
+[![Travis](https://img.shields.io/travis/BoxSystem/StoreBox-CLI.svg?style=flat-square)](https://travis-ci.org/BoxSystem/StoreBox-CLI)
 [![Author](https://img.shields.io/badge/Author-AryloYeung-blue.svg?style=flat-square)](https://github.com/arylo)
-[![license](https://img.shields.io/github/license/Arylo/StoreBox-CLI.svg?style=flat-square)][REPO]
+[![license](https://img.shields.io/github/license/BoxSystem/StoreBox-CLI.svg?style=flat-square)][REPO]
 
 ## Installation
 
@@ -20,7 +19,7 @@ npm install stortbox-cli --global
 ### Upload File(s)
 
 ```
-pbr-up README.md LICENSE
+pbr-up upload README.md LICENSE
 ```
 
 ## License (MIT)
