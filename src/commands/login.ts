@@ -38,7 +38,7 @@ export = new class implements Command {
         const spinner = ora('Logining').start();
         try {
             const req = await client
-            .login(answers.username, answers.password);
+                .login(answers.username, answers.password);
             const obj = isString(req) ? JSON.parse(req): req;
             config.config.username = answers.username;
             config.config.token = obj.token;
