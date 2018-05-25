@@ -1,6 +1,7 @@
 import minimist = require('minimist');
 import { keys, commands, DEF_COMMAND } from './commands';
 import { read } from './config';
+import { isFunction } from 'util';
 
 type ARGV_TYPE = minimist.ParsedArgs & {
     help: boolean;
@@ -32,15 +33,25 @@ export const runCommand = (command: string) => {
     const m = getCommand(command);
     const mArgv = minimist(process.argv.slice(2), m.options || { });
     mArgv._.shift();
-    m.handler(mArgv);
+    try {
+        const p = m.handler(mArgv);
+        if (p.then && p.catch && isFunction(p.then) && isFunction(p.catch)) {
+            p.catch(() => {
+                getCommand('help').handler({ _: [command] })
+            });
+        }
+    } catch (error) {
+        getCommand('help').handler({ _: [command] })
+    }
 };
 
 export const route = () => {
     if (argv.v) {
         return console.log(read().version);
     }
-    if (argv.help || !argv._[0]) {
+    const command = argv._[0];
+    if (argv.help || !command || keys.indexOf(command) === -1) {
         return runCommand('help');
     }
-    runCommand(argv._[0]);
+    runCommand(command);
 };
