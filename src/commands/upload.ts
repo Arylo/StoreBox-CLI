@@ -44,6 +44,9 @@ export = new class implements Command {
             return console.log('NO FOUND FILES');
         }
         const client = require('../client');
+        if (argv.url) {
+            client.setUrl(argv.url);
+        }
         for (const filepath of filepaths) {
             const spinner = ora('Uploading');
             try {

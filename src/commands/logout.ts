@@ -21,7 +21,9 @@ export = new class implements Command {
     };
 
     handler(argv: ARGV_TYPE) {
-        client.setUrl(argv.url);
+        if (argv.url) {
+            client.setUrl(argv.url);
+        }
         client.logout();
         const config = read();
         const url = new URL(config.url);

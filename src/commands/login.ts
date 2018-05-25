@@ -35,7 +35,9 @@ export = new class implements Command {
             name: 'password',
             message: 'Type the password'
         }]);
-        client.setUrl(argv.url);
+        if (argv.url) {
+            client.setUrl(argv.url);
+        }
         const url = new URL(config.read().url);
         const keys = [`${url.host}/:_authName`, `${url.host}/:_authToken`];
         const spinner = ora('Logining').start();
