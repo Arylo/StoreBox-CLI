@@ -6,8 +6,31 @@ node_js:
   - "8"
   - "6"
 
-script:
+before_script:
   - "npm run build"
+  - "npm link"
+
+script:
+  - "pbr-up"
+  - "pbr-up -h"
+  - "pbr-up -v"
+  - "pbr-up help"
+  - "pbr-up config"
+  - "pbr-up config get"
+  - "pbr-up config list"
+  - "pbr-up whoami"
+  - "pbr-up logout"
+  - "pbr-up upload"
+  - "pbr-up help help"
+  - "pbr-up help config"
+  - "pbr-up help whoami"
+  - "pbr-up help login"
+  - "pbr-up help logout"
+  - "pbr-up help upload"
+  - "pbr-up update"
+
+after_script:
+  - "npm unlink"
 
 before_deploy:
   - "npm run clean"
