@@ -6,15 +6,16 @@ import ora = require('ora');
 import glob = require('glob');
 
 type ARGV_TYPE = minimist.ParsedArgs & {
-    glob: boolean
+    glob: boolean;
+    url?: string
 };
 
 export = new class implements Command {
 
-    usage = '$0 $command <file> [...files]';
+    usage = '$0 $command <file> [...files] [--glob] [--url url]';
 
     options: minimist.Opts = {
-        boolean: ['glob'],
+        boolean: ['glob', 'url'],
         default: {
             glob: false
         }
@@ -22,7 +23,7 @@ export = new class implements Command {
 
     async handler(argv: ARGV_TYPE) {
         if (argv._.length === 0) {
-            return;
+            throw new Error();
         }
         const filepaths = [...new Set(argv._.map((item) => {
             if (path.isAbsolute(item)) {

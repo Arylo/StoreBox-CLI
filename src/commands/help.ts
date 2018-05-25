@@ -9,7 +9,7 @@ import * as utils from '../utils';
 export = new class implements Command {
 
     usage = [
-        '', '<command>'
+        '[command]'
     ].map((item) => `$0 $command ${item}`).join('\n');
 
     handler(argv: minimist.ParsedArgs) {
@@ -36,7 +36,7 @@ export = new class implements Command {
     private commandHelp(argv: minimist.ParsedArgs, command?: string) {
         const $0 = path.basename(process.argv[1]);
         if (!command) {
-            console.log(`\nUsage: ${$0} <command>`);
+            console.log(`\nUsage: ${$0} <command> [-v|-h]`);
             console.log('\ncommand:')
             const table = new Table({
                 chars: utils.recode([

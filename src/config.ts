@@ -6,10 +6,9 @@ import path = require('path');
 import mkdirp = require('mkdirp');
 
 export interface Config {
-    username?: string;
-    token?: string;
     url: string;
     version: string;
+    [key: string]: string;
 }
 
 export let config: Config;

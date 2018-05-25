@@ -72,6 +72,9 @@ export = new class implements Command {
             }
         });
         for (const key of Object.keys(config.read())) {
+            if (/^.+\/:_auth(Token|Name)$/.test(key)) {
+                continue;
+            }
             const val = config.read()[key];
             table.push([key, val]);
         }
