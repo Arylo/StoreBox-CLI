@@ -1,6 +1,7 @@
 import minimist = require('minimist');
 import inquirer = require('inquirer');
 import ora = require('ora');
+import { URL } from 'url';
 import { isString } from 'util';
 import { Command } from './command';
 import { client } from '../client';
@@ -38,7 +39,7 @@ export = new class implements Command {
         if (argv.url) {
             client.setUrl(argv.url);
         }
-        const url = new URL(config.read().url);
+        const url = new URL(client.getUrl());
         const keys = [`${url.host}/:_authName`, `${url.host}/:_authToken`];
         const spinner = ora('Logining').start();
         try {

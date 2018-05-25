@@ -1,7 +1,7 @@
 import minimist = require('minimist');
 import { URL } from 'url';
 import { Command } from './command';
-import { read, save, SAVE_TYPE_OPTIONS, ACTION_TYPE_OPTIONS } from '../config';
+import { save, SAVE_TYPE_OPTIONS, ACTION_TYPE_OPTIONS } from '../config';
 import { client } from '../client';
 
 type ARGV_TYPE = minimist.ParsedArgs & {
@@ -25,8 +25,7 @@ export = new class implements Command {
             client.setUrl(argv.url);
         }
         client.logout();
-        const config = read();
-        const url = new URL(config.url);
+        const url = new URL(client.getUrl());
         const keys = [`${url.host}/:_authName`, `${url.host}/:_authToken`];
         save(keys, argv.type, ACTION_TYPE_OPTIONS.remove);
     }

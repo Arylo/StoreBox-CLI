@@ -4,6 +4,7 @@ import os = require('os');
 import fs = require('fs');
 import path = require('path');
 import mkdirp = require('mkdirp');
+import utils = require('./utils');
 
 export interface Config {
     url: string;
@@ -47,15 +48,15 @@ export const save = (
     type: SAVE_TYPE_OPTIONS = SAVE_TYPE_OPTIONS.local,
     action: ACTION_TYPE_OPTIONS = ACTION_TYPE_OPTIONS.update
 ) => {
-    const filepath = filepaths[type === 'local' ? 2 : 1];
+    const filepath = filepaths[type === SAVE_TYPE_OPTIONS.local ? 2 : 1];
     const folderpath = path.dirname(filepath);
-    const keys = Array.isArray(key) ? key : [key];
+    const keys = utils.arrify(key);
     if (!fs.existsSync(folderpath)) {
         mkdirp.sync(folderpath);
     }
     const _config = fs.existsSync(filepath) ?
         ini.parse(fs.readFileSync(filepath, { encoding: 'utf-8' })) : { };
-    if (action === 'remove') {
+    if (action === ACTION_TYPE_OPTIONS.remove) {
         for (const key of keys) {
             delete _config[key];
         }
