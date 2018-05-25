@@ -35,7 +35,7 @@ export const runCommand = (command: string) => {
     mArgv._.shift();
     try {
         const p = m.handler(mArgv);
-        if (p.then && p.catch && isFunction(p.then) && isFunction(p.catch)) {
+        if (p && isFunction(p.then) && isFunction(p.catch)) {
             p.catch(() => {
                 getCommand('help').handler({ _: [command] })
             });

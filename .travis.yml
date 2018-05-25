@@ -19,7 +19,6 @@ script:
   - "pbr-up config get"
   - "pbr-up config list"
   - "pbr-up whoami"
-  - "pbr-up logout"
   - "pbr-up upload"
   - "pbr-up help help"
   - "pbr-up help config"
